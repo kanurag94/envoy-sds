@@ -11,7 +11,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-var Identifier = "envoy-sds"
+const (
+	Identifier = "cluster-0-control-plane"
+)
 
 type Service struct {
 	stopCh chan struct{}
@@ -107,6 +109,7 @@ func (srv *Service) StreamSecrets(sds secret.SecretDiscoveryService_StreamSecret
 			fmt.Printf("error sending stream response: %s", err.Error())
 			return err
 		}
+		fmt.Println("response sent to the client")
 
 		nonce = dr.Nonce
 	}
