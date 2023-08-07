@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net"
 	"os"
@@ -23,7 +24,7 @@ var (
 )
 
 func main() {
-	lis, err := net.Listen(PROTOCOL, SOCKET)
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -32,7 +33,7 @@ func main() {
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	go func() {
 		<-c
-		os.Remove(SOCKET)
+		// os.Remove(SOCKET)
 		os.Exit(1)
 	}()
 
