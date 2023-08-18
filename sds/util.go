@@ -35,14 +35,10 @@ func getDiscoveryResponse(r *discovery.DiscoveryRequest, versionInfo string) (*d
 	}
 
 	return &discovery.DiscoveryResponse{
-		// VersionInfo: versionInfo,
-		Resources: resources,
-		TypeUrl:   secretTypeURL,
-		Nonce:     nonce,
-		// Canary:      false,
-		// ControlPlane: &corev3.ControlPlane{
-		// Identifier: Identifier,
-		// },
+		VersionInfo: versionInfo,
+		Resources:   resources,
+		TypeUrl:     secretTypeURL,
+		Nonce:       nonce,
 	}, nil
 }
 
